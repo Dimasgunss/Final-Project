@@ -4,6 +4,12 @@ import Navbar from './Navbar'
 import Register from './Register'
 import Login from './Login'
 import Home from './Home'
+import Footer from './Footer'
+import ManageProducts from './ManageProducts'
+import ProductDetail from './ProductDetail'
+import Cart from './Cart'
+import './index.css'
+
 
 import {connect} from 'react-redux'
 
@@ -47,6 +53,11 @@ render() {
                 <Route path="/" exact component={Home} />
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
+                <Route path="/manageproducts" component={ManageProducts} />
+                <Route path="/productdetail" component={ProductDetail} />
+                <Route path='/cart' component={Cart}/>
+
+               <Route path='/' exact component={Footer}/>
         </BrowserRouter>
     </div>
               

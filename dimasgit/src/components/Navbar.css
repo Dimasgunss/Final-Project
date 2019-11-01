@@ -1,6 +1,7 @@
 .search-box{
    width: 700px;
    margin-left: 50px;
+   border-radius: 5px;
    
    
 }
@@ -8,3 +9,8 @@
 .material-icon{
    margin-left:  0px;
 }
+
+
+ 
+
+

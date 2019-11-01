@@ -11,15 +11,16 @@ import {
   DropdownMenu,
   DropdownItem,
   Input,
-  Button } from 'reactstrap';
+  Button
+} from 'reactstrap';
 
 import { NavLink } from 'react-router-dom'
 
 import './Navbar.css'
-import {onLogoutUser} from '../actions/index'
-import {Connect} from 'react-redux'
+import { onLogoutUser } from '../actions/index'
+import { connect } from 'react-redux'
 
-export default class Example extends React.Component {
+export class navbar extends React.Component {
   constructor(props) {
     super(props);
 
@@ -35,52 +36,113 @@ export default class Example extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <Navbar style={{backgroundColor:'gren', fontSize: '9px'}}  light expand="md">
-          <NavbarBrand href="/" style={{fontFamily: 'Luckiest Guy, cursive', fontSize:'35px', color: 'blue'}}>
-            dimsSt🤣re
-          </NavbarBrand>
-          <div className='search'>
-            <Input type='text' className='search-box' placeholder='Cari Produk' />
-          </div>
+    if (!this.props.user_name) {
+      return (
+        <div>
+          <Navbar style={{ backgroundColor: '#e0143d', fontSize: '9px' }} expand="md">
+            <NavbarBrand href="/" style={{ fontFamily: 'Luckiest Guy, cursive', fontSize: '35px', color: 'white' }}>
+              BukaPalak
+            </NavbarBrand>
+            <div className='search'>
+              <Input type='text' className='search-box' placeholder='Aku mau belanja' />
+            </div>
 
+            <button type="button" className="btn btn-outline-light mx-2">Search</button>
+           
+            <NavbarToggler onClick={this.toggle} />
+            <Collapse isOpen={this.state.isOpen} navbar>
 
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-
-              <div style={{fontSize: '20px'}}>
-                <a href="#">
-                  <span class="glyphicon glyphicon-shopping-cart"></span>
-                </a>
+              <div style={{ fontSize: '20px' }} className="ml-auto">
+                <NavLink to='/cart'>
+                  <span className="fa fa-shopping-cart" style={{ color: 'white'}}></span>
+                </NavLink>
               </div>
+             
 
-            <Nav className="ml-auto" navbar>
-              <NavItem className='container'>
-                <NavLink to="/login" style={{color:'', fontSize: '100px'}}><button type="button" className="btn btn-outline-secondary">Login</button></NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink to="/register" style={{color:'', fontSize:'100px'}}><button type="button" className="btn btn-outline-secondary">Sign Up</button></NavLink>
-              </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret style={{color:'black'}}>
-                   <i className="material-icons" style={{color:'black'}}>account_circle</i>
-                   {this.props.user_name}
-                </DropdownToggle>
+
+              <div className="ml-4">
+                <NavLink to="/login" style={{ color: 'white', fontSize: '13px' }}>Login</NavLink>
+              </div>
+              <div className="ml-4">
+                <NavLink to="/register"><button type="button" className="btn btn-outline-dark" style={{ color: 'white', fontSize: '13px' }}>Sign Up</button></NavLink>
+              </div>
+              <UncontrolledDropdown nav inNavbar style={{ listStyleType: "none" }}>
+                {/* <DropdownToggle nav caret style={{color:'black'}}>
+                     <i className="material-icons" style={{color:'white'}}>account_circle</i>
+                     {this.props.user_name}
+                  </DropdownToggle> */}
                 <DropdownMenu right>
-                  <DropdownItem style={{fontSize:'15px'}}>
+                  <DropdownItem style={{ fontSize: '15px' }}>
                     My Account
-                  </DropdownItem>
+                    </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem style={{fontSize:'15px'}}>
+                  <DropdownItem style={{ fontSize: '15px' }}>
                     Logout{this.props.onLogoutUser}
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-            </Nav>
-          </Collapse>
-        </Navbar>
-      </div>
-    );
+
+            </Collapse>
+          </Navbar>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Navbar style={{ backgroundColor: '#e0143d', fontSize: '9px' }} expand="md">
+            <NavbarBrand href="/" style={{ fontFamily: 'Luckiest Guy, cursive', fontSize: '35px', color: 'white' }}>
+              BukaPalak
+            </NavbarBrand>
+            <div className='search'>
+              <Input type='text' className='search-box' placeholder='Aku mau belanja' />
+            </div>
+
+            <button type="button" className="btn btn-outline-light mx-2">Search</button>
+
+            <NavbarToggler onClick={this.toggle} />
+            <Collapse isOpen={this.state.isOpen} navbar>
+
+              <div style={{ fontSize: '20px' }} className="ml-auto">
+                <NavLink to="/cart">
+                   <span className="fa fa-shopping-cart" style={{ color: 'white' }}></span>
+                </NavLink>
+              </div>
+
+
+  
+              <UncontrolledDropdown nav inNavbar style={{ listStyleType: "none" }}>
+                <DropdownToggle nav caret style={{ color: 'white' }}>
+                  <i className="material-icons" style={{ color: 'white' }}>account_circle</i>
+                Hi Kaka {this.props.user_name}
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem>
+                      <NavLink className='nav-link' to=''>All Product</NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                      <NavLink className='nav-link' to='/manageproducts'>Manage Product</NavLink>
+                    </DropdownItem>
+                  <DropdownItem divider />
+                  <NavLink to='/'>
+                    <DropdownItem onClick={this.props.onLogoutUser} style={{ fontSize: '15px' }}>
+                      Logout
+                  </DropdownItem>
+                  </NavLink>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+
+            </Collapse>
+          </Navbar>
+        </div>
+      );
+    }
   }
 }
+
+const mstp = state => {
+  return {
+    user_name: state.auth.username
+  }
+}
+
+export default connect(mstp, { onLogoutUser })(navbar)

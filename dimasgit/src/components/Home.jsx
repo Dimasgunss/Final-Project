@@ -1,21 +1,60 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import './Home.css'
-import Corausel from './Corausel'
+import Carousel from './Carousel'
+import ProductItem from './ProductItem'
+
+// import Footer from './footer'
+
 
 export default class Home extends Component {
+
+    state = {
+        product: [],
+        searchProducts: []
+    }
+
+    componentDidMount() {
+        axios.get(
+            'http://localhost:2001/auth/getproduct'
+
+        ).then(res => {
+            this.setState(
+                {
+                    products: res.data,
+                    searchProducts: res.data
+                }
+            )
+
+        })
+    }
+
+    renderList = () => {
+        // products = [{}, {}, {}]
+        // product = {id, name, description, price, picture}
+        return this.state.searchProducts.map((product) => {
+            return (
+            
+                <div className='col-4'>
+                     <ProductItem barang={product} key={product.id} />
+                </div>
+            )
+          
+        })
+
+    }
+
+
+
     render() {
         return (
-            <div className='container mt-4'>
-                <div className='text-center'style={{fontFamily: 'Luckiest Guy, cursive', fontSize:'60px', color: 'blue'}}>dimsSt🤣re</div>
-                  <h1 className='text-center mt-5' style={{fontFamily: 'Luckiest Guy, cursive'}}>
-                     <b>THE ONLINE TOY STORE WITH YOUR FAVORITE TOYS AND GAMES</b>
-                  </h1>
-
-                  <center>
-                      <p>#itsplaytime</p>
-                  </center>
+            <div className='container container-height'>
                 <div>
-                    < Corausel/>
+                    <Carousel />
+                </div>
+                <div className="row ">
+                    {this.renderList()}
+                    {/* <Footer/> */}
                 </div>
             </div>
         )

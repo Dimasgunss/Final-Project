@@ -21,16 +21,18 @@ class Register extends Component {
 
         // Check apa username sudah terpakai
         axios.get(
-            'http://localhost:2019/users',
+            'http://localhost:2001/auth/getdata',
             {
                 params: {
                     username: data_username
                 }
             }
         ).then( (res) => {
-
+            if(data_username ==  ""  || data_password ==  "" || data_email == "") {
+                this.setState({loading:false, error: "Data tidak boleh kosong"})
+            }
             // Jika data di temukan berdasarkan username
-            if(res.data.length > 0){
+            else if(res.data.length > 0){
 
                 // spinner akan jadi button, akan muncul pesan 'error
                 this.setState({loading: false, error:'Username sudah digunakan'})
@@ -45,7 +47,7 @@ class Register extends Component {
             } else {
                 // Check apakah email sudah digunakan
                 axios.get(
-                    'http://localhost:2019/users',
+                    'http://localhost:2001/auth/getdata',
                     {
                         params: {
                             email: data_email
@@ -62,7 +64,7 @@ class Register extends Component {
                     } else {
                         // POST DATA BARU
                         axios.post(
-                            'http://localhost:2019/users',
+                            'http://localhost:2001/auth/register',
                             {
                                 username: data_username,
                                 email: data_email,
@@ -97,7 +99,7 @@ class Register extends Component {
 
         return (
             <button 
-                className='btn-block btn btn-outline-primary mt-2'
+                className='btn-block btn btn-outline-primary mt-2' style={{fontSize: '15px'}}
                 onClick={this.onRegisterClick}
             >Register</button>
         )
@@ -129,25 +131,22 @@ class Register extends Component {
     render() {
         return (
             <div className="container">
-            <div className="row">
-                 <h2 className="mx-auto" style={{fontFamily: 'Luckiest Guy, cursive' ,color:'black', fontSize:'30px'}}>Welcome Back! </h2>
-            </div>
+               <div className="row">
+                 <h2 className="mx-auto" style={{color:'black', fontSize:'30px'}}>Sign Up For Free</h2>
+               </div>
 
-                        <div className="row">
-                        <div className='col-lg-4 col-md-4 col-sm-8 col-8 mx-auto p-5 card'>
-                    <div className='form'>
-                        
+                <div className="row">
+                   <div className='col-lg-4 col-md-4 col-sm-8 col-8 mx-auto p-5 card'>
+                      <div className='form'>
                         <form className='form-group' >
                             <div className="card-title">
                                 <h4>Username</h4>
                             <input ref={(input) => {this.username = input}} type='text' className='form-control' placeholder='Username'/>
                             </div>
-                            
-
                             <div className="card-title">
                                 <h4>Email</h4>
                             </div>
-                            <input ref={(input) => {this.email = input}} type='text' className='form-control' placeholder='Email'/>
+                            <input ref={(input) => {this.email = input}} type='email' className='form-control' placeholder='Email'/>
 
                             <div className="card-title ">
                                 <h4>Password</h4>
