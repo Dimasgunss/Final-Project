@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios'
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 
 import {onLoginUser} from '../actions/index'
 import './Login.css'
@@ -29,7 +29,7 @@ class Login extends Component {
             return (
                <div className="container container-height">
                    <div className="row">
-                        <h2 className="mx-auto" style={{color:'black', fontSize:'30px'}}>Welcome Back! </h2>
+                        <h2 className="mx-auto my-5" style={{color:'black', fontSize:'30px'}}><b>Welcome Back!</b></h2>
                    </div>
 
                    <div className="row">
@@ -37,9 +37,11 @@ class Login extends Component {
                        <div className='form'>
           
                         <div className='card-body'>
-                            <div className="card-title d-flex justify-content-center" style={{fontSize: '150px'}}>
+                           <Link to='/'>
+                           <div className="card-title d-flex justify-content-center" style={{fontSize: '150px'}}>
                               <img  src='https://www.fit2work.com.au/assets/img/avatars/LoginIconAppl.png'/>
                             </div>
+                           </Link>
                             
                             <form className='form-group'>
                                 <div className="card-tittle mt-3">
@@ -53,11 +55,20 @@ class Login extends Component {
                             </form>
     
                             <button 
-                                className="btn-block btn btn-outline-primary mt-2"
+                                className="btn-block btn btn-outline-dark"
                                 onClick={this.onLoginClick}
-                                style={{height: '30px', fontSize: '15px'}}
-                            >Login</button>
+                                style={{height: '30px', fontSize: '15px'}}>
+                                Login  
+                            </button>
                             
+                            <div className='mt-2'>
+                                Belum punya akun? 
+                                <Link to='/register' className='ml-1' style={{color: 'red'}}>
+                                    Daftar di sini
+                                </Link>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>

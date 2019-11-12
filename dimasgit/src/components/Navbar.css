@@ -10,6 +10,16 @@
    margin-left:  0px;
 }
 
+.line{
+   width: 1px;
+   height: 35px;
+   background: #000000;
+   margin: 0 16px 0 26px;
+}
+
+.mx-2{
+   
+}
 
  
 

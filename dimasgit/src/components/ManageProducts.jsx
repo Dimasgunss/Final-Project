@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import Navbar from './Navbar'
 
 class ManageProducts extends Component {
 
@@ -129,6 +130,7 @@ class ManageProducts extends Component {
                 // render sebagai textbox
                 return (
                     <tr key={product.id}>
+                        
                         <td>
                             <input type='text' size={8}
                             className='form-control'
@@ -221,7 +223,6 @@ class ManageProducts extends Component {
                        </tr>
                     </tbody>
                 </table>
-
             </div>
         )
     }

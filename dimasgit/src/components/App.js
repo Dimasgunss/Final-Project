@@ -8,10 +8,13 @@ import Footer from './Footer'
 import ManageProducts from './ManageProducts'
 import ProductDetail from './ProductDetail'
 import Cart from './Cart'
+import Modal from './Modal'
+import CheckOut from './CheckOut'
 import './index.css'
 
 
 import {connect} from 'react-redux'
+
 
 const keepLogin = (objUser) => {
     
@@ -46,22 +49,28 @@ class App extends Component {
 
 render() {
    
-    return (
-     <div>
-        <BrowserRouter>
-                <Navbar/>
-                <Route path="/" exact component={Home} />
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
-                <Route path="/manageproducts" component={ManageProducts} />
-                <Route path="/productdetail" component={ProductDetail} />
-                <Route path='/cart' component={Cart}/>
-
-               <Route path='/' exact component={Footer}/>
-        </BrowserRouter>
-    </div>
-              
-    );
+    if (this.state.check){
+        return (
+         <div>
+            <BrowserRouter>
+                    
+                    <Route path="/" exact component={Home} />
+                    <Route path="/login" exact component={Login} />
+                    <Route path="/register" component={Register} />
+                    <Route path="/manageproducts" render={ () => <> <Navbar/> <ManageProducts/> </>} />
+                    <Route path="/productdetail/:id" component={ProductDetail} />
+                    <Route path='/cart' component={Cart}/>
+                    <Route path='/modal' component={Modal}/>
+                    <Route path='/checkout' component={CheckOut}/>
+                    
+                   <Route path='/' exact component={Footer}/>
+            </BrowserRouter>
+        </div>
+                  
+        );
+    } else{
+        return <h1>Loading</h1>
+    }
  }
 
 } 

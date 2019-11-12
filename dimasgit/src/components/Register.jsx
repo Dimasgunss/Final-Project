@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-
+import {Link} from "react-router-dom"
 import './Register.css'
 
 class Register extends Component {
@@ -99,7 +99,7 @@ class Register extends Component {
 
         return (
             <button 
-                className='btn-block btn btn-outline-primary mt-2' style={{fontSize: '15px'}}
+                className='btn-block btn btn-outline-dark mt-2' style={{fontSize: '15px'}}
                 onClick={this.onRegisterClick}
             >Register</button>
         )
@@ -132,10 +132,10 @@ class Register extends Component {
         return (
             <div className="container">
                <div className="row">
-                 <h2 className="mx-auto" style={{color:'black', fontSize:'30px'}}>Sign Up For Free</h2>
+                 <h2 className="mx-auto my-5" style={{color:'black', fontSize:'30px'}}><b>Daftar akun baru sekarang!</b></h2>
                </div>
 
-                <div className="row">
+                <div className="row my-4">
                    <div className='col-lg-4 col-md-4 col-sm-8 col-8 mx-auto p-5 card'>
                       <div className='form'>
                         <form className='form-group' >
@@ -161,6 +161,14 @@ class Register extends Component {
 
                         {this.notification()}
                         
+                       <div className='mt-2'>
+                       Sudah punya akun? 
+                       <Link className='ml-1' style={{color: 'red'}} to="/login">
+                       Login aja
+                       </Link> 
+                        </div> 
+
+
                     </div>
                 </div>
                 </div>

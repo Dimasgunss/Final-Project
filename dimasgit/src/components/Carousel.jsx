@@ -6,7 +6,7 @@ import {
   CarouselIndicators,
   CarouselCaption
 } from 'reactstrap';
-
+import './Carousel.css'
 const items = [
   {
     src: 'https://img.pilihkartu.com/Promo/Banner-promo-wehrgo.jpg',
@@ -66,9 +66,10 @@ class Example extends Component {
         <CarouselItem
           onExiting={this.onExiting}
           onExited={this.onExited}
-          key={item.src}
+          key={item.src}ius
         >
-              <img src={item.src} alt={item.altText} height='400' width='1100' className='p-5 align-center' id='id' style={{backgroundColor: '#f5f5f5'}}/>
+             <img src={item.src} alt={item.altText} height='400' width='1100' className='mt-4 align-center radius'/>
+           
         </CarouselItem>
       );
     });

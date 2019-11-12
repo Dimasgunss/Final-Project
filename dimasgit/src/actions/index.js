@@ -18,21 +18,19 @@ export const onLoginUser = (USERNAME, PASSWORD) => {
                 Swal.fire({
                     type: 'error',
                     title: 'Login Failed',
-                    text: 'User Tidak Ditemukan',
                     timer: '1500'
                 })
             }else{
-                let{id, username} = res.data[0]
+                let{id, username, role} = res.data[0]
 
                 localStorage.setItem(
                     'userData',
-                    JSON.stringify({id, username})
+                    JSON.stringify({id, username, role})
                 )
 
                 Swal.fire({
                     type: 'success', 
                     title: 'Login Success!',
-                    text: 'User Berhasil Login',
                     timer: '1500'
 
                 })
@@ -41,7 +39,7 @@ export const onLoginUser = (USERNAME, PASSWORD) => {
                     {
                         type: 'LOGIN_SUCCESS',
                         payload: {
-                            id,username
+                            id,username, role
                         }
                     }
                 )
@@ -55,5 +53,14 @@ export const onLogoutUser = () => {
 
     return {
         type: 'LOGOUT_SUCCESS'
+    }
+}
+
+export const searchNav = (keyword) => {
+    return {
+        type: 'SEARCH_SUCCESS',
+        payload: {
+            keyword: keyword
+        }
     }
 }

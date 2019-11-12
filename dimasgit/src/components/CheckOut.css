@@ -1,0 +1,70 @@
+.pesan {
+    margin-left: 90px;
+}
+
+.namaProduct {
+    margin-left: 70px;
+    height: 50px;
+}
+
+.namaisiproduct {
+    margin-top: -40px;
+}
+
+#btncart {
+    margin-left: 300px;
+}
+
+#btnbeli {
+    margin-left: 300px;
+    margin-top: 20px;
+}
+
+#btncheckout {
+    margin-top: 140px;
+    width: 300px;
+}
+
+#alamat {
+    margin-left: 80px;
+}
+
+#belanjacheckout {
+    margin-left: 90px;
+    box-shadow: 0px 2px 2px rgb(230, 226, 226);
+    width: 400px;
+    height: 300px;
+}
+
+#inputjmlpesanan {
+    margin-left: 180px;
+}
+
+#bordercart {
+    margin-left: 50px;
+}
+
+#isicart {
+    padding: 20px;
+    width: 600px;
+    height: auto;
+    margin-top: 10px;
+    margin-left: 10px;
+    box-shadow: 0px 2px 2px rgb(230, 226, 226);
+    transition: 0.3s ease all;
+}
+
+#totalbelanja {
+    margin-left: 100px;
+    box-shadow: 0px 2px 2px rgb(230, 226, 226);
+}
+
+#qty {
+    margin-left: 500px;
+    width: 50px;
+    height: 30px;
+}
+
+.total {
+    margin-left: 200px;
+}
